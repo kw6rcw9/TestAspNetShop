@@ -1,0 +1,26 @@
+﻿@model List<Item>
+
+@{
+    ViewData["Title"] = "Корзина";
+    ViewData["H1"] = "Корзина";
+}
+
+
+<p>@ViewBag.NoItems</p>
+
+@foreach(Item el in Model){
+    <div class="order-item">
+        <h1>@el.Name</h1>
+        <p>Цена: @el.Price.ToString("c")</p>
+    </div>
+}
+<div class="summary">
+
+    @if(Model.Count > 0)
+    {
+    <p>Общая сумма: @ViewBag.Summary.ToString("c")</p>
+    <a href="/cart/order">Оплатить</a>
+        
+    }
+
+</div>

@@ -1,0 +1,18 @@
+﻿
+@model List<Blog>
+
+@{
+    ViewData["Title"] = "Блог";
+    ViewData["H1"] = "Блог сайта";
+}
+
+
+
+@foreach (var el in Model)
+{
+    <div class="item">
+        <h1>@el.Title</h1>
+        <p>@el.Annons</p>
+
+    </div>
+}
