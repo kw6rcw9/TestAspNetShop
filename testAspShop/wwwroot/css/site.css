@@ -179,6 +179,33 @@ main, header, footer, aside {
 
 }
 
+.item.order {
+    width: 100%;
+    margin-top: 20px;
+}
+    .item.order input {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 7px 0;
+        border-color: #9f7d07;
+
+    }
+        .item.order input[type=submit]{
+            width: 150px;
+            color: #fff;
+            background: #c59c0e;
+            font-weight: 600;
+        }
+            .item.order input[type=submit]:hover{
+                background: #9d8329;
+
+            }
+            .item.order .error{
+                color: #d1441a;
+                font-weight: 600;
+                display: block;
+            }
+
 footer {
     background: #222;
     border-top: 5px solid #000;

@@ -3,3 +3,33 @@
 @{
     ViewData["Title"] = "Оформление заказа";
 }
+<h1>@ViewData["Title"]</h1>
+
+<div class="item order">
+    <form method="post" asp-controller="Cart" asp-action="Order">
+        <label asp-for="Name"> </label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="error"> </span>
+
+        <label asp-for="Surname"> </label>
+        <input asp-for="Surname" />
+        <span asp-validation-for="Surname" class="error"> </span>
+
+        <label asp-for="Adress"> </label>
+        <input asp-for="Adress" />
+        <span asp-validation-for="Adress" class="error"> </span>
+
+        <label asp-for="PhoneNumber"> </label>
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber" class="error"> </span>
+
+        <label asp-for="Email"> </label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="error"> </span>
+
+        <input asp-for="Cart" type="hidden" value="@ViewBag.sessionItems"/>
+        <span asp-validation-for="Email" class="error"> </span>
+
+        <input type="submit" value="Оплатить" />
+    </form>
+</div>
