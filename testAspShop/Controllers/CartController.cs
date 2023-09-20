@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using testAspShop.Data;
 using testAspShop.Models;
-namespace testAspShop.Controllers
-{
+using CloudIpspSDK;
+using CloudIpspSDK.Checkout;
+namespace testAspShop.Controllers { 
+
     public class CartController : Controller
     {
         
@@ -32,6 +34,7 @@ namespace testAspShop.Controllers
 
             
                 ViewBag.Summary = items.Sum(x => x.Price);
+            TempData["summary"] = ViewBag.Summary;
 
             
            
@@ -68,7 +71,25 @@ namespace testAspShop.Controllers
             {
                 _context.orders.Add(order); 
                 _context.SaveChanges();
-                return Redirect("/");
+                Config.MerchantId = 1396424;
+                Config.SecretKey = "test";
+
+                var req = new CheckoutRequest
+                {
+                    order_id = Guid.NewGuid().ToString("N"),
+                    amount = Convert.ToInt32(TempData["summary"]) * 100,
+                    order_desc = "checkout json demo",
+                    currency = "USD"
+                };
+                var resp = new Url().Post(req);
+                string url = "/";
+                if (resp.Error == null)
+                {
+                    url = resp.checkout_url;
+                }
+                
+
+                    return Redirect(url);
             }
             ViewBag.sessionItems = HttpContext.Session.GetString("items_id") ?? "";
             return View();
