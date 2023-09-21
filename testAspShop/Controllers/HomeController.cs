@@ -17,6 +17,7 @@ namespace testAspShop.Controllers
             _logger = logger;
         }
 
+        
         public IActionResult Index()
         {
             
